@@ -2,12 +2,23 @@
 import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
+const formattedPublishDate = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+}).format(frontmatter.publishDate);
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <p>{frontmatter.pubDate.toLocaleDateString()}</p>
-  <p><em>{frontmatter.description}</em></p>
-  <p>Written by: {frontmatter.author}</p>
-  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-  <slot />
+  <article class="blog-post max-w-4xl p-8 flex flex-col m-auto">
+    <h1 class="text-primary text-3xl text-center font-semibold">
+      {frontmatter.title}
+    </h1>
+    <div class="text-center">
+      <p class="text-accent text-center! font-semibold">
+        {formattedPublishDate}
+      </p>
+    </div>
+    <slot />
+  </article>
 </BaseLayout>

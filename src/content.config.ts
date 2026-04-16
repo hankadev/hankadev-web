@@ -7,17 +7,13 @@ import { z } from "astro/zod";
 // Define a `loader` and `schema` for each collection
 const blog = defineCollection({
   loader: glob({ pattern: "**/[^_]*.md", base: "./src/posts" }),
-  schema: z.object({
-    title: z.string(),
-    pubDate: z.date(),
-    description: z.string(),
-    author: z.string(),
-    image: z.object({
-      url: z.string(),
-      alt: z.string(),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      publishDate: z.date(),
+      tags: z.array(z.string()),
+      featured: z.boolean().optional(),
     }),
-    tags: z.array(z.string()),
-  }),
 });
 // Export a single `collections` object to register your collection(s)
 export const collections = { blog };
