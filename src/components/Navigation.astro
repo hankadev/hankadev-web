@@ -2,7 +2,18 @@
 
 ---
 
-<nav>
-	<a href="/">Home</a>
-	<a href="/blog">Blog</a>
-</nav>
+<header
+  class="flex justify-center border-b border-border sticky top-0 bg-background"
+>
+  <div class="container px-8 py-4 uppercase">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-primary font-bold text-2xl">hankadev</a>
+      <nav
+        class="flex gap-8 font-semibold text-text-muted [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-primary"
+      >
+        <a href="/">About me</a>
+        <a href="/blog">Blog</a>
+      </nav>
+    </div>
+  </div>
+</header>

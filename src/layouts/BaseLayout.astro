@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
 const { pageTitle } = Astro.props;
 ---
@@ -14,15 +15,17 @@ const { pageTitle } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body class="bg-background text-text">
+  <body class="bg-background text-text min-h-screen flex flex-col">
     <Navigation />
-    <h1 class="text-xl text-primary">{pageTitle}</h1>
-    <slot />
+    <main class="container m-auto py-8 grow">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

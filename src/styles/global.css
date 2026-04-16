@@ -3,6 +3,7 @@
 @theme { 
   --color-background: #1f2125;
   --color-text: #e3e5ea;
+  --color-text-muted: #8a8f9a;
   --color-border: #374151;
   --color-primary: #fbbf24;
   --color-accent: #60a5fa;
@@ -23,6 +24,6 @@ h6 {
   font-family: var(--font-heading);
 }
 
-nav a {
+header a {
   font-family: var(--font-heading);
 }
