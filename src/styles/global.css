@@ -64,6 +64,11 @@ h6 {
   letter-spacing: 0.04em;
 }
 
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
 header a {
   font-family: var(--font-heading);
 }
@@ -152,6 +157,11 @@ a {
   a:hover {
     color: var(--color-accent);
     text-decoration-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
+  }
+
+  a.tag-chip-link,
+  a.tag-chip-link:hover {
+    text-decoration: none;
   }
 
   h2 a {

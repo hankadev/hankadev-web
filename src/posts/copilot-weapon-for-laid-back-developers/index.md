@@ -1,5 +1,6 @@
 ---
 title: "Copilot: Weapon For Laid Back Developers"
+description: "Real-world GitHub Copilot workflows that boost developer productivity, from smarter autocomplete to code explanations and debugging help."
 publishDate: 2023-11-12
 tags: ["development", "ai"]
 ---

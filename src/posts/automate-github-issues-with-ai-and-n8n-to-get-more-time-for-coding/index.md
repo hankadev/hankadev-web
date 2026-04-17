@@ -1,5 +1,6 @@
 ---
 title: "Automate GitHub Issues with AI and n8n to Get More Time for Coding"
+description: "A step-by-step walkthrough for automating GitHub issue triage with n8n and AI so you spend less time on process and more on code."
 publishDate: 2025-09-16
 tags: ["development", "automation", "github", "ai", "n8n"]
 ---

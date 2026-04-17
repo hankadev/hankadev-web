@@ -1,5 +1,6 @@
 ---
 title: "Git Battle: YOLO Mode vs. Clean History"
+description: "A practical comparison of messy versus clean Git workflows, with tips for using rebase and fixup to keep commit history useful."
 publishDate: 2023-06-11
 tags: ["development", "git"]
 ---

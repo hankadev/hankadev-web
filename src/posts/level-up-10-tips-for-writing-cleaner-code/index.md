@@ -1,5 +1,6 @@
 ---
 title: "Level up: 10 Tips for Writing Better Code"
+description: "Ten practical clean code habits that improve readability, maintainability, and teamwork for developers at any experience level."
 publishDate: 2023-07-03
 tags: ["development"]
 ---

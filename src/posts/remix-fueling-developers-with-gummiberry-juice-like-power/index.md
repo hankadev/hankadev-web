@@ -1,5 +1,6 @@
 ---
 title: "Remix: Fueling Developers with Gummiberry Juice-Like Power"
+description: "Why Remix feels powerful in practice, from routing and data loading to error handling and full-stack workflows in one framework."
 publishDate: 2023-05-25
 tags: ["web-development", "remix"]
 ---

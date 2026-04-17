@@ -1,6 +1,6 @@
 ---
 title: "React 19 Makes Forms Fun Again: A Deep Dive into the New Hooks"
-description: "A practical deep dive into React 19’s new hooks. Discover how they simplify form handling, from state and errors to optimistic updates."
+description: "A practical look at React 19 form hooks and how they reduce boilerplate for state, validation, errors, and optimistic updates."
 publishDate: 2025-09-02
 tags: ["webdevelopment", "react"]
 ---

@@ -11,13 +11,28 @@ const formattedPublishDate = new Intl.DateTimeFormat("en-US", {
 
 <BaseLayout pageTitle={frontmatter.title}>
   <article class="blog-post max-w-4xl p-8 flex flex-col m-auto">
-    <h1 class="text-primary text-3xl text-center font-semibold">
+    <h1 class="text-primary text-center font-semibold">
       {frontmatter.title}
     </h1>
-    <div class="text-center">
-      <p class="text-accent text-center! font-semibold">
+    <div class="mt-4 mb-8 flex flex-col items-center gap-3">
+      <div class="flex flex-wrap justify-center gap-2">
+        {
+          frontmatter.tags.map((tag: string) => (
+            <a
+              href={`/tags/${encodeURIComponent(tag)}`}
+              class="tag-chip-link rounded-sm border border-accent/45 bg-accent/12 px-2.5 py-1 text-xs uppercase tracking-[0.08em] text-accent transition-colors duration-150 hover:border-accent hover:bg-accent/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55"
+            >
+              #{tag}
+            </a>
+          ))
+        }
+      </div>
+      <time
+        datetime={frontmatter.publishDate.toISOString()}
+        class="text-accent font-semibold"
+      >
         {formattedPublishDate}
-      </p>
+      </time>
     </div>
     <slot />
   </article>

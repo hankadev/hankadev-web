@@ -1,5 +1,6 @@
 ---
 title: "How Automation Saved Me from Oops Moments: Never Skip Tests in Production Again!"
+description: "How to prevent forgotten .only tests with a pre-commit hook and GitHub Action, using practical automation that catches mistakes early."
 publishDate: 2024-01-28
 tags: ["development", "automation", "github", "githubactions"]
 ---

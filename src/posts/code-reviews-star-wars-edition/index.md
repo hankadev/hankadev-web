@@ -1,5 +1,6 @@
 ---
 title: "Code Reviews in a Galaxy Far, Far Away"
+description: "A Star Wars themed guide to writing clearer, kinder, and more actionable code review comments that teams can actually use."
 publishDate: 2024-03-17
 tags: ["development"]
 ---
