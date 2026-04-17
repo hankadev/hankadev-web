@@ -77,6 +77,12 @@ a {
   transition: color 180ms ease;
 }
 
+a.tag-chip-link,
+a.tag-chip-link:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
 ::selection {
   background: rgba(200, 164, 90, 0.32);
   color: #f2e8d2;
@@ -130,7 +136,8 @@ a {
   }
 
   p code, li code {
-    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.25rem;
     border-radius: 0.25rem;
     border: 0;
   }
@@ -161,6 +168,7 @@ a {
 
   a.tag-chip-link,
   a.tag-chip-link:hover {
+    color: var(--color-accent);
     text-decoration: none;
   }
 

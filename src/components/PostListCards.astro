@@ -1,4 +1,6 @@
 ---
+import Tag from "./Tag.astro";
+
 const { posts } = Astro.props;
 ---
 
@@ -16,9 +18,7 @@ const { posts } = Astro.props;
           </h2>
           <div class="mt-4 flex flex-wrap gap-2">
             {post.data.tags.map((tag: string) => (
-              <span class="rounded-sm border border-accent/45 bg-accent/12 px-2.5 py-1 text-xs uppercase tracking-[0.08em] text-accent">
-                #{tag}
-              </span>
+              <Tag tag={tag} />
             ))}
           </div>
           <p class="mt-4 text-base leading-relaxed text-text-muted">
