@@ -21,7 +21,19 @@ We were already using [lint-staged](https://github.com/lint-staged/lint-staged) 
 
 So first I created a file `pre-commit.sh` which is a bash script that checks all the staged files and looks for the `.only` text.
 
-<script src="https://gist.github.com/hankadev/b7ff6bc63fb99dec62fd74b2e706b4d6.js?file=pre-commit.sh"></script>
+```bash
+#!/bin/bash
+# pre-commit.sh
+for file in $(git diff --cached --name-only | grep -E '\.(js|jsx|ts|tsx)$'); do
+  if grep -q ".only(" "$file"; then
+    echo "Error: '.only(' found in $file"
+    exit 1
+  fi
+done
+exit 0
+```
+
+(You can find the code on [GitHub](https://gist.github.com/hankadev/b7ff6bc63fb99dec62fd74b2e706b4d6#file-pre-commit-sh))
 
 Then I just had to specify for which files I want to run this script in my `lint-staged.config.js` configuration file. In my case I wanted to run the script only for the JavaScript and TypeScript files.
 
@@ -42,6 +54,35 @@ Perfect! Now we have a check in place for every commit made by a developer… bu
 
 This scenario can be addressed by a GitHub Action that runs on every pull request to the main branch. I've added a new job to the workflow to perform a similar check. However, I had to make some adjustments to the script. The one I initially used for pre-commit hooks compares the staged files. Considering that there could be multiple commits in the pull request, and some of them might involve force pushes, I wanted to ensure a thorough comparison of all the JavaScript and TypeScript files modified in the pull request.
 
-<script src="https://gist.github.com/hankadev/996c7c7734e66d274b574afc51e6afe1.js?#file-check-only-yaml"></script>
+```yaml
+name: PR checks
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for .only in changed JavaScript and TypeScript files
+        run: |
+          changed_files=$(git diff --name-only origin/main)
+          for file in $changed_files
+          do
+            if [[ $file == *.js || $file == *.jsx || $file == *.ts || $file == *.tsx ]]
+            then
+              if grep -q ".only(" $file
+              then
+                echo "File $file contains .only("
+                exit 1
+              fi
+            fi
+          done
+```
+
+(You can find the code on [GitHub](https://gist.github.com/hankadev/996c7c7734e66d274b574afc51e6afe1#file-check-only-yaml))
 
 Yes, automation can save us a lot of time and help avoid issues caused by silly mistakes.

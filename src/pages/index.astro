@@ -3,10 +3,46 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout pageTitle="hankadev blog">
-  <h2 class="text-accent">main page</h2>
-  <p>
-    Welcome to the hankadev blog! This is where I share my thoughts, projects,
-    and experiences in the world of software development. Stay tuned for updates
-    and feel free to reach out if you have any questions or suggestions!
-  </p>
+  <section
+    class="mx-auto max-w-3xl space-y-6 rounded-lg border border-border bg-surface/75 p-6 sm:p-8"
+  >
+    <p class="text-xs sm:text-sm uppercase tracking-[0.22em] text-accent">
+      Outer Rim Dispatch
+    </p>
+    <h1 class="text-3xl sm:text-4xl leading-tight text-primary">
+      I build. I break. I fix.
+    </h1>
+    <div class="text-lg text-text leading-relaxed flex flex-col gap-6">
+      <p>
+        A long time ago, in a galaxy far, far away, a child was born - a
+        curious, smart, and stubborn girl. She wanted to become the most
+        powerful Jedi ever, but unfortunately, she was never tested for her
+        midi-chlorian levels. Instead of undergoing Jedi training, she played
+        football, ice hockey, and listened to pop punk music. However, she never
+        gave up on her dream of becoming a hero, she just needed to find a
+        different path.
+      </p>
+      <p>
+        Then one day, her path changed. She was taken in by the Mandalorians -
+        warriors who valued skill over destiny and action over intention. They
+        taught her their creed: adapt, endure, and finish what you start.
+      </p>
+      <p>I build. I break. I fix. This is the way.</p>
+      <p>
+        And so she became a bounty hunter in the galaxy of software engineering,
+        taking on contracts with bounties on bugs and glitches. And when the
+        work allows it, she writes down her adventures.
+      </p>
+    </div>
+    <div
+      class="h-px w-full bg-linear-to-r from-transparent via-primary/70 to-transparent"
+    >
+    </div>
+    <a
+      href="/blog"
+      class="mx-auto flex w-fit items-center gap-2 border border-primary/60 px-4 py-2 uppercase tracking-[0.16em] text-sm font-semibold text-primary hover:bg-primary/12 transition-colors"
+    >
+      Enter the archive
+    </a>
+  </section>
 </BaseLayout>

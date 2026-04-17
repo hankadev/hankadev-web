@@ -1,19 +1,40 @@
 @import "tailwindcss";
 
 @theme { 
-  --color-background: #1f2125;
-  --color-text: #e3e5ea;
-  --color-code-inline: #2e3440ff;
-  --color-text-muted: #8a8f9a;
-  --color-border: #374151;
-  --color-primary: #fbbf24;
-  --color-accent: #60a5fa;
-  --font-body: "Mulish", sans-serif;
-  --font-heading: "Orbitron", sans-serif;
+  --color-background: #111418;
+  --color-surface: #1a1f25;
+  --color-text: #d9dde3;
+  --color-code-inline: #232a33;
+  --color-text-muted: #8b949e;
+  --color-border: #2f3842;
+  --color-primary: #c8a45a;
+  --color-accent: #5f8f9b;
+  --font-body: "Rajdhani", sans-serif;
+  --font-heading: "Aldrich", sans-serif;
 }
 
 body {
   font-family: var(--font-body);
+  background:
+    radial-gradient(1200px circle at 15% 0%, rgba(200, 164, 90, 0.12), transparent 45%),
+    radial-gradient(1000px circle at 85% 10%, rgba(95, 143, 155, 0.12), transparent 40%),
+    linear-gradient(180deg, #0f1216 0%, #141920 50%, #111418 100%);
+  letter-spacing: 0.01em;
+}
+
+main {
+  position: relative;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(217, 221, 227, 0.06) 0.6px, transparent 0.6px);
+  background-size: 4px 4px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 95%);
+  opacity: 0.35;
 }
 
 .video-embed {
@@ -39,19 +60,32 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  color: var(--color-primary)
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
 }
 
 header a {
   font-family: var(--font-heading);
 }
 
+a {
+  transition: color 180ms ease;
+}
+
+::selection {
+  background: rgba(200, 164, 90, 0.32);
+  color: #f2e8d2;
+}
+
 .blog-post  {
+  color: var(--color-text);
+
   h2, h3, h4, h5, h6 {
     font-family: var(--font-body);
     margin-top: 2rem;
     text-align: left;
     align-self: start;
+    letter-spacing: 0.02em;
   }
 
   h2 {
@@ -71,10 +105,19 @@ header a {
     margin: 1rem 0;
     width: 100%;
     padding: 1rem;
+    border: 1px solid color-mix(in oklab, var(--color-border) 85%, var(--color-primary));
+    background-color: var(--color-code-inline);
   }
 
   code {
     background-color: var(--color-code-inline) !important;
+  }
+
+  pre code {
+    background-color: transparent !important;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
   }
 
   pre {
@@ -84,6 +127,7 @@ header a {
   p code, li code {
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
+    border: 0;
   }
 
   ol {
@@ -99,8 +143,15 @@ header a {
   }
 
   a {
-    color: var(--color-accent);
+    color: var(--color-primary);
     text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--color-primary) 65%, transparent);
+    text-underline-offset: 0.15em;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+    text-decoration-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
   }
 
   h2 a {
@@ -112,10 +163,12 @@ header a {
   }
 
   blockquote {
-    border-left: 4px solid var(--color-accent);
-    padding-left: 1rem;
-    margin: 1rem 0 1rem 2rem;
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    margin: 1rem 2rem;
     font-style: italic;
+    background: linear-gradient(90deg, rgba(95, 143, 155, 0.16), rgba(95, 143, 155, 0.04));
 
     p {
       margin: 0.5rem 0;
