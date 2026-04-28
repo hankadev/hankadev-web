@@ -1,18 +1,19 @@
 ---
-const { tag, isLink = false } = Astro.props;
+const { tag, isLink = false, icon } = Astro.props;
 
 const baseClasses =
   "rounded-sm border border-accent/45 bg-accent/12 px-2.5 py-1 text-xs uppercase tracking-[0.08em] text-accent";
 const linkClasses = `${baseClasses} tag-chip-link no-underline transition-colors duration-150 hover:no-underline hover:border-accent hover:bg-accent/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55`;
 const href = `/tags/${encodeURIComponent(tag)}`;
+const tagLabel = icon ? `${icon} ${tag}` : `#${tag}`;
 ---
 
 {
   isLink ? (
     <a href={href} class={linkClasses}>
-      #{tag}
+      {tagLabel}
     </a>
   ) : (
-    <span class={baseClasses}>#{tag}</span>
+    <span class={baseClasses}>{tagLabel}</span>
   )
 }

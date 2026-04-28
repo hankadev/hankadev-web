@@ -1,0 +1,48 @@
+---
+import Tag from "./Tag.astro";
+import type { Talk } from "../types/talk";
+
+const { talks } = Astro.props as { talks: Talk[] };
+
+const dateFormatter = new Intl.DateTimeFormat("en", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<ol class="mx-auto grid max-w-5xl grid-cols-1 gap-5">
+  {
+    talks.map((talk) => (
+      <li class="list-none">
+        <div class="relative flex flex-col gap-6 border border-border bg-surface/75 p-6 md:flex-row md:items-end md:justify-between">
+          <span class="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/35 to-transparent" />
+          <div class="flex flex-col gap-5">
+            <div class="max-w-3xl">
+              <p class="text-lg font-semibold uppercase tracking-[0.14em] text-accent">
+                {talk.eventTitle}
+              </p>
+              <h2 class="mt-2 text-xl leading-snug text-primary">
+                {talk.title}
+              </h2>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <Tag tag={dateFormatter.format(talk.date)} icon="📅" />
+              <Tag tag={talk.place} icon="📍" />
+            </div>
+          </div>
+
+          <a
+            href={talk.recordingUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex self-start items-center gap-2 border border-primary/60 px-4 py-2 text-sm font-semibold uppercase tracking-[0.16em] text-primary transition-colors hover:border-accent/75 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55 md:self-end"
+          >
+            Watch recording
+          </a>
+        </div>
+      </li>
+    ))
+  }
+</ol>
