@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Tag from "../components/Tag.astro";
+import { Icon } from "astro-icon/components";
 
 const { frontmatter } = Astro.props;
 const formattedPublishDate = new Intl.DateTimeFormat("en-US", {
@@ -19,12 +20,12 @@ const formattedPublishDate = new Intl.DateTimeFormat("en-US", {
       <div class="flex flex-wrap justify-center gap-2">
         {frontmatter.tags.map((tag: string) => <Tag tag={tag} isLink />)}
       </div>
-      <time
-        datetime={frontmatter.publishDate.toISOString()}
-        class="text-accent font-semibold"
-      >
-        {formattedPublishDate}
-      </time>
+      <div class="text-accent font-semibold flex items-center gap-1">
+        <Icon name="lucide:calendar-days" />
+        <time datetime={frontmatter.publishDate.toISOString()}>
+          {formattedPublishDate}
+        </time>
+      </div>
     </div>
     <slot />
   </article>

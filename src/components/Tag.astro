@@ -1,19 +1,49 @@
 ---
-const { tag, isLink = false, icon } = Astro.props;
+interface Props {
+  tag: string;
+  isLink?: boolean;
+  class?: string;
+}
+
+const { tag, isLink = false, class: className = "" } = Astro.props as Props;
+const normalizedTag = tag.trim().replace(/^#/, "");
+const hasSlot = Astro.slots.has("default");
 
 const baseClasses =
-  "rounded-sm border border-accent/45 bg-accent/12 px-2.5 py-1 text-xs uppercase tracking-[0.08em] text-accent";
-const linkClasses = `${baseClasses} tag-chip-link no-underline transition-colors duration-150 hover:no-underline hover:border-accent hover:bg-accent/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55`;
-const href = `/tags/${encodeURIComponent(tag)}`;
-const tagLabel = icon ? `${icon} ${tag}` : `#${tag}`;
+  "inline-flex items-center rounded-sm border border-accent/45 bg-accent/12 px-2.5 py-1 text-xs uppercase tracking-[0.08em] text-accent";
+const chipClasses =
+  `${baseClasses} ${hasSlot ? "gap-1.5" : ""} ${className}`.trim();
+const linkClasses = `${chipClasses} tag-chip-link no-underline transition-colors duration-150 hover:no-underline hover:border-accent hover:bg-accent/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/55`;
+const href = `/tags/${encodeURIComponent(normalizedTag)}`;
+const linkLabel = `View posts tagged ${normalizedTag}`;
 ---
 
 {
   isLink ? (
-    <a href={href} class={linkClasses}>
-      {tagLabel}
+    <a href={href} class={linkClasses} aria-label={linkLabel}>
+      {hasSlot ? (
+        <>
+          <span aria-hidden="true">
+            <slot />
+          </span>
+          <span>{normalizedTag}</span>
+        </>
+      ) : (
+        `#${normalizedTag}`
+      )}
     </a>
   ) : (
-    <span class={baseClasses}>{tagLabel}</span>
+    <span class={chipClasses}>
+      {hasSlot ? (
+        <>
+          <span aria-hidden="true">
+            <slot />
+          </span>
+          <span>{normalizedTag}</span>
+        </>
+      ) : (
+        `#${normalizedTag}`
+      )}
+    </span>
   )
 }

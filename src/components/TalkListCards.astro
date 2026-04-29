@@ -1,5 +1,6 @@
 ---
 import Tag from "./Tag.astro";
+import { Icon } from "astro-icon/components";
 import type { Talk } from "../types/talk";
 
 const { talks } = Astro.props as { talks: Talk[] };
@@ -28,8 +29,12 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
             </div>
 
             <div class="flex flex-wrap gap-2">
-              <Tag tag={dateFormatter.format(talk.date)} icon="📅" />
-              <Tag tag={talk.place} icon="📍" />
+              <Tag tag={dateFormatter.format(talk.date)}>
+                <Icon name="lucide:calendar-days" />
+              </Tag>
+              <Tag tag={talk.place}>
+                <Icon name="lucide:map-pin" />
+              </Tag>
             </div>
           </div>
 
