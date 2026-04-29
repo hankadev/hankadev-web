@@ -1,5 +1,19 @@
 ---
+import { Icon } from "astro-icon/components";
+import NavigationLink from "./NavigationLink.astro";
 
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/blog", label: "Blog" },
+  { href: "/talks", label: "Talks" },
+  { href: "/rss.xml", label: "RSS" },
+];
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
 ---
 
 <header
@@ -14,13 +28,60 @@
       <a href="/" class="text-primary font-bold text-2xl tracking-[0.2em]"
         >hankadev</a
       >
+
+      <!-- Desktop nav -->
       <nav
-        class="flex gap-6 md:gap-8 text-[0.95rem] font-semibold tracking-[0.14em] text-text-muted [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-primary"
+        class="hidden md:flex gap-6 md:gap-8 text-[0.95rem] font-semibold tracking-[0.14em]"
       >
-        <a href="/blog">Blog</a>
-        <a href="/talks">Talks</a>
-        <a href="/rss.xml">RSS</a>
+        {
+          navLinks.map(({ href, label }) => (
+            <NavigationLink
+              href={href}
+              label={label}
+              isActive={isActive(href)}
+            />
+          ))
+        }
       </nav>
+
+      <!-- Mobile hamburger button -->
+      <button
+        id="nav-toggle"
+        class="md:hidden text-text-muted hover:text-primary transition-colors duration-200 cursor-pointer"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <Icon name="lucide:menu" id="nav-icon-menu" class="h-6 w-6" />
+        <Icon name="lucide:x" id="nav-icon-close" class="h-6 w-6 hidden" />
+      </button>
     </div>
+
+    <!-- Mobile nav -->
+    <nav
+      id="mobile-nav"
+      class="hidden md:hidden flex-col gap-4 text-[0.95rem] font-semibold tracking-[0.14em] pt-4 pb-2"
+    >
+      {
+        navLinks.map(({ href, label }) => (
+          <NavigationLink href={href} label={label} isActive={isActive(href)} />
+        ))
+      }
+    </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  const iconMenu = document.getElementById("nav-icon-menu");
+  const iconClose = document.getElementById("nav-icon-close");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = !mobileNav?.classList.contains("hidden");
+    mobileNav?.classList.toggle("hidden", isOpen);
+    mobileNav?.classList.toggle("flex", !isOpen);
+    iconMenu?.classList.toggle("hidden", !isOpen);
+    iconClose?.classList.toggle("hidden", isOpen);
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+</script>
