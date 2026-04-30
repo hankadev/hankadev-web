@@ -2,13 +2,10 @@
 import BaseLayout from "./BaseLayout.astro";
 import Tag from "../components/Tag.astro";
 import { Icon } from "astro-icon/components";
+import { formatPublishDate } from "../utils/date.js";
 
 const { frontmatter, minutesRead } = Astro.props;
-const formattedPublishDate = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-}).format(frontmatter.publishDate);
+const formattedPublishDate = formatPublishDate(frontmatter.publishDate);
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>

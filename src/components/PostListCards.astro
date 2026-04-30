@@ -1,5 +1,7 @@
 ---
 import Tag from "./Tag.astro";
+import { Icon } from "astro-icon/components";
+import { formatPublishDate } from "../utils/date.js";
 
 const { posts } = Astro.props;
 ---
@@ -17,6 +19,17 @@ const { posts } = Astro.props;
             {post.data.title}
           </h2>
           <div class="mt-4 flex flex-wrap gap-2">
+            <Tag
+              tag={formatPublishDate(post.data.publishDate)}
+              class="normal-case"
+            >
+              <Icon name="lucide:calendar-days" />
+            </Tag>
+            {post.minutesRead && (
+              <Tag tag={post.minutesRead} class="normal-case">
+                <Icon name="lucide:timer" />
+              </Tag>
+            )}
             {post.data.tags.map((tag: string) => (
               <Tag tag={tag} />
             ))}

@@ -2,14 +2,9 @@
 import Tag from "./Tag.astro";
 import { Icon } from "astro-icon/components";
 import type { Talk } from "../types/talk";
+import { formatLongDate } from "../utils/date.js";
 
 const { talks } = Astro.props as { talks: Talk[] };
-
-const dateFormatter = new Intl.DateTimeFormat("en", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
 ---
 
 <ol class="mx-auto grid max-w-5xl grid-cols-1 gap-5">
@@ -29,7 +24,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
             </div>
 
             <div class="flex flex-wrap gap-2">
-              <Tag tag={dateFormatter.format(talk.date)}>
+              <Tag tag={formatLongDate(talk.date)}>
                 <Icon name="lucide:calendar-days" />
               </Tag>
               <Tag tag={talk.place}>
