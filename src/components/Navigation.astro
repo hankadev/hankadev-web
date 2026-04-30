@@ -10,9 +10,13 @@ const navLinks = [
   { href: "/rss.xml", label: "RSS" },
 ];
 
+function normalizePath(path: string) {
+  if (path === "/") return "/";
+  return path.replace(/\/+$/, "");
+}
+
 function isActive(href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname.startsWith(href);
+  return normalizePath(pathname) === normalizePath(href);
 }
 ---
 
