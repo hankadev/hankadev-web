@@ -4,18 +4,23 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.hankadev.com",
+
   markdown: {
     shikiConfig: {
       theme: "nord",
     },
     remarkPlugins: [remarkReadingTime],
   },
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   fonts: [
     {
       provider: fontProviders.fontsource(),
@@ -28,5 +33,7 @@ export default defineConfig({
       cssVariable: "--font-rajdhani",
     },
   ],
+
   integrations: [icon()],
+  adapter: cloudflare(),
 });
