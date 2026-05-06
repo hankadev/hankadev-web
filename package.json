@@ -24,5 +24,8 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.88.0"
   }
 }
