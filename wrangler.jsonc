@@ -7,6 +7,16 @@
 		"directory": "./dist",
 		"binding": "ASSETS"
 	},
+	"routes": [
+		{
+			"pattern": "hankadev.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.hankadev.com",
+			"custom_domain": true
+		}
+	],
 	"observability": {
 		"enabled": true
 	}
